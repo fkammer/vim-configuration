@@ -4,8 +4,9 @@ set autoread
 " => Color and Fonts
 " Enable syntax highlighting
 syntax enable
-
 set background=dark
+" let g:solarized_termcolors=256
+colorscheme solarized
 
 " Set utf8 as standard encoding
 set encoding=utf8
@@ -55,14 +56,11 @@ set hlsearch
 " airline
 :set guifont=Monaco:h12
 
-" colorscheme
-colorscheme railscasts
-
 " disable arrow keys
-" nnoremap <up> <nop>
-" nnoremap <down> <nop>
-" nnoremap <left> <nop>
-" noremap <right> <nop>
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+noremap <right> <nop>
 
 "
 " tab autocompletion

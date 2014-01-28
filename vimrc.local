@@ -5,8 +5,13 @@ set autoread
 " Enable syntax highlighting
 syntax enable
 set background=dark
-" let g:solarized_termcolors=256
-colorscheme solarized
+if has("gui_running")
+  colorscheme railscasts
+  set guifont=Monospace\ 10
+else
+  colorscheme solarized
+  set guifont=Monaco:h12
+endif
 
 " Set utf8 as standard encoding
 set encoding=utf8
@@ -53,8 +58,6 @@ set hlsearch
 :imap <leader>a <Esc>:co .<Enter>gi
 :vmap <leader>a :co '><Enter>gv
 
-" airline
-:set guifont=Monaco:h12
 
 " disable arrow keys
 nnoremap <up> <nop>

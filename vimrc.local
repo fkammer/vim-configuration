@@ -1,0 +1,121 @@
+" Set to auto read when a file is changed from outside
+set autoread
+
+" => Color and Fonts
+" Enable syntax highlighting
+syntax enable
+
+set background=dark
+
+" Set utf8 as standard encoding
+set encoding=utf8
+
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
+
+
+" => Tabs
+" Use spaces instead of tabs
+set expandtab
+
+" Be smart when using tabs
+set smarttab
+
+" Use autoindent
+set autoindent
+
+" 1 tab == 2 spaces
+set shiftwidth=2
+set tabstop=2
+
+set gdefault
+nmap <leader>c<space> :NERDComToggleComment
+nmap <leader>r :NERDTreeToggle<CR>
+nmap <leader>op :CtrlP<CR>
+nmap <leader>oo :CtrlPBuffer<CR>
+nmap <space> :w<CR>
+nmap <leader>c<space> V,c<space>0
+nnoremap <leader>w <C-w>v<C-w>l
+
+set colorcolumn=80
+
+nmap <leader>ss :call whitespace#strip_trailing()<CR>
+
+" remove search highlights
+nnoremap <leader><space> :noh<CR>
+
+" highlight search results
+set hlsearch
+
+" Duplicate one line
+:nmap <leader>a :co .-1<Enter>
+:imap <leader>a <Esc>:co .<Enter>gi
+:vmap <leader>a :co '><Enter>gv
+
+" airline
+:set guifont=Monaco:h12
+
+" colorscheme
+colorscheme railscasts
+
+" disable arrow keys
+" nnoremap <up> <nop>
+" nnoremap <down> <nop>
+" nnoremap <left> <nop>
+" noremap <right> <nop>
+
+"
+" tab autocompletion
+"
+
+function! Smart_TabComplete()
+let line = getline('.') " current line
+
+let substr = strpart(line, -1, col('.')+1) " from the start of the current
+" line to one character right
+" of the cursor
+let substr = matchstr(substr, "[^ \t]*$") " word till cursor
+if (strlen(substr)==0) " nothing to match on empty string
+return "\<tab>"
+endif
+let has_period = match(substr, '\.') != -1 " position of period, if any
+let has_slash = match(substr, '\/') != -1 " position of slash, if any
+if (!has_period && !has_slash)
+return "\<C-X>\<C-P>" " existing text matching
+elseif ( has_slash )
+return "\<C-X>\<C-F>" " file matching
+else
+return "\<C-X>\<C-O>" " plugin matching
+endif
+endfunction
+
+inoremap <tab> <c-r>=Smart_TabComplete()<CR>
+
+"
+" copied from maximum-awesome
+"
+
+set nocursorline " don't highlight current line
+
+" keyboard shortcuts
+inoremap jj <ESC>
+
+" highlight search
+"set hlsearch
+"nmap <leader>hl :let @/ = ""<CR>
+
+" Disambiguate ,a & ,t from the Align plugin, making them fast again.
+"
+" This section is here to prevent AlignMaps from adding a bunch of mappings
+" that interfere with the very-common ,a and ,t mappings. This will get run
+" at every startup to remove the AlignMaps for the *next* vim startup.
+"
+" If you do want the AlignMaps mappings, remove this section, remove
+" ~/.vim/bundle/Align, and re-run rake in maximum-awesome.
+function! s:RemoveConflictingAlignMaps()
+  if exists("g:loaded_AlignMapsPlugin")
+    AlignMapsClean
+  endif
+endfunction
+command! -nargs=0 RemoveConflictingAlignMaps call s:RemoveConflictingAlignMaps()
+silent! autocmd VimEnter * RemoveConflictingAlignMaps

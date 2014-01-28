@@ -1,0 +1,6 @@
+Bundle "scrooloose/nerdcommenter"
+Bundle "Lokaltog/vim-easymotion"
+Bundle "wavded/vim-stylus"
+Bundle "bling/vim-airline"
+Bundle "Lokaltog/vim-distinguished"
+Bundle "railscasts"

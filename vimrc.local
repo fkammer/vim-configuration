@@ -42,6 +42,7 @@ nmap <leader>oo :CtrlPBuffer<CR>
 nmap <space> :w<CR>
 nmap <leader>c<space> V,c<space>0
 nnoremap <leader>w <C-w>v<C-w>l
+nnoremap <leader>cw :CoffeeWatch vert<cr>
 
 set colorcolumn=80
 

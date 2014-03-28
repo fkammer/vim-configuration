@@ -124,3 +124,7 @@ if filereadable(expand("~/.vimrc.local"))
 " noremap! jj <ESC>
   source ~/.vimrc.local
 endif
+
+if filereadable(expand("~/.vimrc.sofatutor"))
+  source ~/.vimrc.sofatutor
+endif
